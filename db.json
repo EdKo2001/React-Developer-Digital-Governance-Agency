@@ -1,0 +1,201 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Aria Smith",
+      "email": "aria.smith@example.com",
+      "phone": "5550100",
+      "personal_number": "987654321"
+    },
+    {
+      "id": 2,
+      "name": "Liam Johnson",
+      "email": "liam.johnson@example.com",
+      "phone": "5550101",
+      "personal_number": "987654322"
+    },
+    {
+      "id": 3,
+      "name": "Noah Williams",
+      "email": "noah.williams@example.com",
+      "phone": "5550102",
+      "personal_number": "987654323"
+    },
+    {
+      "id": 4,
+      "name": "Noah Williams",
+      "email": "noah.williams@example.com",
+      "phone": "5550102",
+      "personal_number": "987654323"
+    },
+    {
+      "id": 5,
+      "name": "Noah Williams",
+      "email": "noah.williams@example.com",
+      "phone": "5550102",
+      "personal_number": "987654323"
+    },
+    {
+      "id": 6,
+      "name": "Noah Williams",
+      "email": "noah.williams@example.com",
+      "phone": "5550102",
+      "personal_number": "987654323"
+    },
+    {
+      "name": "Raj2",
+      "email": "test@test.com2",
+      "phone": "12345678902",
+      "personal_number": "12345678902",
+      "id": 7
+    },
+    {
+      "id": 9,
+      "name": "Noah Williams",
+      "email": "noah.williams@example.com",
+      "phone": "5550102",
+      "personal_number": "987654323"
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Elena Rodriguez",
+      "email": "elena.rodriguez@example.com",
+      "phone": "5550200"
+    },
+    {
+      "id": 2,
+      "name": "James Wilson",
+      "email": "james.wilson@example.com",
+      "phone": "5550201"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "course_name": "Introduction to Biology",
+      "course_difficulty": "Beginner",
+      "teacher_id": 1,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 2,
+      "course_name": "Fundamentals of Mathematics",
+      "course_difficulty": "Intermediate",
+      "teacher_id": 2,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 3,
+      "course_name": "World History Overview",
+      "course_difficulty": "Advanced",
+      "teacher_id": 1,
+      "start_date": "2023-01-15",
+      "end_date": "2023-05-30"
+    },
+    {
+      "id": 4,
+      "course_name": "Introduction to Biology",
+      "course_difficulty": "Beginner",
+      "teacher_id": 1,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 5,
+      "course_name": "Fundamentals of Mathematics",
+      "course_difficulty": "Intermediate",
+      "teacher_id": 2,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 6,
+      "course_name": "World History Overview",
+      "course_difficulty": "Advanced",
+      "teacher_id": 1,
+      "start_date": "2023-01-15",
+      "end_date": "2023-05-30"
+    },
+    {
+      "id": 7,
+      "course_name": "Introduction to Biology",
+      "course_difficulty": "Beginner",
+      "teacher_id": 1,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 8,
+      "course_name": "Fundamentals of Mathematics",
+      "course_difficulty": "Intermediate",
+      "teacher_id": 2,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 9,
+      "course_name": "World History Overview",
+      "course_difficulty": "Advanced",
+      "teacher_id": 1,
+      "start_date": "2023-01-15",
+      "end_date": "2023-05-30"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "SuperAdmin@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "payment": [
+    {
+      "id": 1,
+      "student_id": 1,
+      "course_id": 1,
+      "Name": "Aria Smith",
+      "Payment Schedule": "First",
+      "Bill Number": "3243354656",
+      "Amount Paid": "1000",
+      "Balance amount": "1000",
+      "Date": "2020-01-01"
+    },
+    {
+      "id": 2,
+      "student_id": 2,
+      "course_id": 2,
+      "Name": "Liam Johnson",
+      "Payment Schedule": "First",
+      "Bill Number": "3243354656",
+      "Amount Paid": "1000",
+      "Balance amount": "1000",
+      "Date": "2020-01-01"
+    },
+    {
+      "id": 3,
+      "student_id": 3,
+      "course_id": 3,
+      "Name": "Noah Williams",
+      "Payment Schedule": "First",
+      "Bill Number": "3243354656",
+      "Amount Paid": "1000",
+      "Balance amount": "1000",
+      "Date": "2020-01-01"
+    },
+    {
+      "id": 4,
+      "student_id": 4,
+      "course_id": 4,
+      "Name": "Noah Williams",
+      "Payment Schedule": "First",
+      "Bill Number": "3243354656",
+      "Amount Paid": "1000",
+      "Balance amount": "1000",
+      "Date": "2020-01-01"
+    }
+  ]
+}
