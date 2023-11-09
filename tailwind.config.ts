@@ -8,13 +8,20 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        gray: "#6C6C6C",
+        lightGray: "#CDCDCD",
+        borderColor: "#E5E5E5",
+        orange: "#FEAF00",
+        authShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        formShadow: "2px 5px 10px 0px rgba(0, 0, 0, 0.10)",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        authBG: "linear-gradient(71deg, #FEAF00 19.35%, #F8D442 90.12%);",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
