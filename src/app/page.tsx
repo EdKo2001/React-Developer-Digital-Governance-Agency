@@ -18,10 +18,11 @@ async function signInHandler(formData: FormData) {
     });
 
     if (res.data.message === "User logged in") {
-      cookies().set("token", "userToken", {
-        secure: true,
-        maxAge: 60 * 60,
-      });
+      // TODO: Set cookie (token)
+      // cookies().set("token", "userToken", {
+      //   secure: true,
+      //   maxAge: 60 * 60,
+      // });
       isRediect = true;
     } else {
       console.error("Authentication failed");
@@ -70,7 +71,6 @@ const SignIn = () => {
             />
           </div>
         ))}
-
         <button
           type="submit"
           className="bg-orange mt-[30px] items-center self-stretch rounded px-5 py-4 text-sm font-medium text-white"
@@ -78,7 +78,7 @@ const SignIn = () => {
           SIGN IN
         </button>
         <div className="mt-[10px] text-center text-sm">
-          <span className="text-gray">Forgot your password? </span>
+          <span className="text-gray">Forgot your password?</span>
           <Link href="#" className="text-orange font-medium underline">
             Reset Password
           </Link>

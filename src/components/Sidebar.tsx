@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
+
 import { Navigation } from ".";
+import Logout from "./Logout";
 
 export default function Sidebar() {
   return (
@@ -13,10 +15,7 @@ export default function Sidebar() {
         height={128}
       />
       <Navigation />
-      <button className="mx-auto  mt-auto flex w-[91px]  items-center  gap-[23px]  text-sm font-medium text-black max-md:mt-10">
-        Logout
-        <Image src="/images/logout.svg" alt="Logout" width={17} height={17} />
-      </button>
+      <Logout />
     </div>
   );
 }
