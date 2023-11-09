@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Sidebar } from ".";
+import { Header, Sidebar } from ".";
 
 export default function DashboardLayout({
   children,
@@ -8,9 +8,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-full gap-5 max-md:flex-col max-md:items-stretch max-md:gap-0">
+    <div className="flex h-full  max-md:flex-col max-md:items-stretch max-md:gap-0">
       <Sidebar />
-      {children}
+      <div className="flex w-full flex-col gap-[36px]">
+        <Header />
+        {children}
+      </div>
     </div>
   );
 }
