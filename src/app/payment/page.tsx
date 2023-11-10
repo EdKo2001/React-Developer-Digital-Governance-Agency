@@ -1,23 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
 
 import { DashboardLayout } from "@/components";
 
 import { Table } from "@/components/reusables";
 import { axiosInstance } from "@/config";
 
-const headerData = [
-  "Name",
-  "Payment Schedule",
-  "Bill Number",
-  "Amount Paid",
-  "Balance amount",
-  "Date",
-];
-
-const paymentData = [
-  ["Karthi", "First", "00012223", "INR 35,000", "INR 55,000", "08-Dec, 2021"],
-];
+export const metadata: Metadata = {
+  title: "Payment Details",
+};
 
 async function getPayments() {
   "use server";
