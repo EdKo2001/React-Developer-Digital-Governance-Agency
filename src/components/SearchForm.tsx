@@ -22,18 +22,12 @@ export default function SearchForm() {
         name="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="placeholder-lightGray border-borderColor h-[37px] w-full rounded-lg border border-solid p-[13px] text-sm text-black"
+        className="h-[37px] w-full rounded-lg border border-solid border-borderColor p-[13px] text-sm text-black placeholder-lightGray"
         placeholder="Search..."
         required
       />
-      <button type="submit" className="absolute bottom-0 right-[14px] top-0  ">
-        <Image
-          src="/images/search.svg"
-          alt="search"
-          width={14}
-          height={14}
-          className=""
-        />
+      <button type="submit" className="absolute bottom-0 right-[14px] top-0">
+        <Image src="/images/search.svg" alt="search" width={14} height={14} />
       </button>
     </form>
   );

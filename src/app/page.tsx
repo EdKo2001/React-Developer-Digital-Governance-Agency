@@ -35,9 +35,9 @@ async function signInHandler(formData: FormData) {
 }
 const SignIn = () => {
   return (
-    <div className="bg-authBG shadow-authShadow flex h-full flex-col items-center px-5">
+    <div className="flex h-full flex-col items-center bg-authBG px-5 shadow-authShadow">
       <form
-        className="shadow-formShadow mb-32 mt-48 flex w-[475px] max-w-full flex-col rounded-[20px] bg-white px-[30px] pb-[58px] pt-[126px]"
+        className="mb-32 mt-48 flex w-[475px] max-w-full flex-col rounded-[20px] bg-white px-[30px] pb-[58px] pt-[126px] shadow-formShadow"
         // ⚠️ NOTE: Due to React type error, this feature is still in beta and experimental.
         // @ts-ignore
         action={signInHandler}
@@ -45,7 +45,7 @@ const SignIn = () => {
         <h1 className="text-center text-[22px] font-semibold uppercase leading-normal text-black">
           Sign In
         </h1>
-        <p className="text-gray mb-[50px] mt-[9px] text-center text-sm">
+        <p className="mb-[50px] mt-[9px] text-center text-sm text-gray">
           Enter your credentials to access your account
         </p>
         {["email", "password"].map((field, idx, arr) => (
@@ -57,7 +57,7 @@ const SignIn = () => {
           >
             <label
               htmlFor={field}
-              className="text-gray self-stretch text-sm font-medium"
+              className="self-stretch text-sm font-medium text-gray"
             >
               {field === "email" ? "Email" : "Password"}
             </label>
@@ -65,7 +65,7 @@ const SignIn = () => {
               type={field === "email" ? "email" : "password"}
               id={field}
               name={field}
-              className="placeholder-lightGray border-borderColor self-stretch rounded border border-solid bg-white px-[15px] py-[13px] text-xs text-black"
+              className="self-stretch rounded border border-solid border-borderColor bg-white px-[15px] py-[13px] text-xs text-black placeholder-lightGray"
               placeholder={`Enter your ${field}`}
               required
             />
@@ -73,13 +73,13 @@ const SignIn = () => {
         ))}
         <button
           type="submit"
-          className="bg-orange mt-[30px] items-center self-stretch rounded px-5 py-4 text-sm font-medium text-white"
+          className="mt-[30px] items-center self-stretch rounded bg-orange px-5 py-4 text-sm font-medium text-white"
         >
           SIGN IN
         </button>
         <div className="mt-[10px] text-center text-sm">
-          <span className="text-gray">Forgot your password?</span>
-          <Link href="#" className="text-orange font-medium underline">
+          <span className="text-gray">Forgot your password?</span>{" "}
+          <Link href="#" className="font-medium text-orange underline">
             Reset Password
           </Link>
         </div>

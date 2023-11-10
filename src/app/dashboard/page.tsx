@@ -1,14 +1,63 @@
 import React from "react";
 import { Metadata } from "next";
+import Image from "next/image";
+
+import axios, { AxiosResponse } from "axios";
 
 import { DashboardLayout } from "@/components";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
 
-export default function Dashboard() {
+interface MetricsData {
+  studentsCount: number;
+  coursesCount: number;
+  payment: number;
+}
+
+async function getMetrics() {
+  "use server";
+
+  try {
+    const responses = await Promise.allSettled([
+      axios.get("http://localhost:3000/api/students"),
+      axios.get("http://localhost:3000/api/courses"),
+      axios.get("http://localhost:3000/api/payment"),
+    ]);
+
+    const settledResponses = responses.map((response) => {
+      if (response.status === "fulfilled") {
+        return response.value.data;
+      } else {
+        console.error(response.reason);
+        return "Failed";
+      }
+    });
+
+    return {
+      studentsCount: settledResponses[0].length,
+      coursesCount: settledResponses[1].length,
+      payment: settledResponses[2].reduce(
+        (acc: number, cur: { "Amount Paid": number }) =>
+          (acc += +cur["Amount Paid"]),
+        0,
+      ),
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      studentsCount: "Failed",
+      coursesCount: "Failed",
+      payment: "Failed",
+    };
+  }
+}
+
+export default async function Dashboard() {
+  const { studentsCount, coursesCount, payment }: MetricsData =
+    await getMetrics();
+
   return (
     <DashboardLayout>
       <div className="ml-5 flex w-[81%] flex-col items-stretch max-md:ml-0 max-md:w-full">
@@ -26,7 +75,7 @@ export default function Dashboard() {
                     Students
                   </div>
                   <div className="mt-5 whitespace-nowrap text-3xl font-bold uppercase text-black">
-                    243
+                    {studentsCount}
                   </div>
                 </div>
               </div>
@@ -41,7 +90,7 @@ export default function Dashboard() {
                     Course
                   </div>
                   <div className="mt-5 whitespace-nowrap text-right text-3xl font-bold uppercase text-black">
-                    13
+                    {coursesCount}
                   </div>
                 </div>
               </div>
@@ -56,7 +105,7 @@ export default function Dashboard() {
                     Payments
                   </div>
                   <div className="mt-5 whitespace-nowrap text-right text-3xl font-bold uppercase text-black">
-                    INR 556,000
+                    INR {payment}
                   </div>
                 </div>
               </div>
