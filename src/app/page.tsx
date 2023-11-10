@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 import { Button } from "@/components/reusables";
@@ -22,11 +21,6 @@ async function signInHandler(formData: FormData) {
     });
 
     if (res.data.message === "User logged in") {
-      // TODO: Set cookie (token)
-      // cookies().set("token", "userToken", {
-      //   secure: true,
-      //   maxAge: 60 * 60,
-      // });
       isRediect = true;
     } else {
       console.error("Authentication failed");
@@ -43,8 +37,6 @@ const SignIn = () => {
     <div className="flex h-full flex-col items-center bg-authBG px-5 shadow-authShadow">
       <form
         className="mb-32 mt-48 flex w-[475px] max-w-full flex-col rounded-[20px] bg-white px-[30px] pb-[58px] pt-[126px] shadow-formShadow"
-        // ⚠️ NOTE: Due to React type error, this feature is still in beta and experimental.
-        // @ts-ignore
         action={signInHandler}
       >
         <h1 className="text-center text-[22px] font-semibold uppercase leading-normal text-black">

@@ -10,18 +10,18 @@ import { Button, Table } from "@/components/reusables";
 import { axiosInstance } from "@/config";
 
 export const metadata: Metadata = {
-  title: "Students List",
+  title: "Courses List",
 };
 
-async function getStudents() {
+async function getCourses() {
   "use server";
 
-  revalidatePath("/students");
+  revalidatePath("/courses");
 
   try {
-    const res = await axiosInstance.get("students");
-    res.data.forEach((student: { date_of_admission: string }) => {
-      student.date_of_admission = "08-Dec, 2021";
+    const res = await axiosInstance.get("courses");
+    res.data.forEach((course: { instructor: string }) => {
+      course.instructor = "Name";
     });
     return res.data;
   } catch (error) {
@@ -29,22 +29,22 @@ async function getStudents() {
   }
 }
 
-export default async function Students() {
-  const students = (await getStudents()) || [];
+export default async function Courses() {
+  const courses = (await getCourses()) || [];
   const headerData = [
     "Avatar",
-    "Name",
-    "Email",
-    "Phone",
-    "Personal Number",
-    "Date of admission",
+    "Course Name",
+    "Course Difficulty",
+    "Instructor",
+    "Start Date",
+    "End Date",
     "Actions",
   ];
 
   return (
     <DashboardLayout>
       <div className="flex items-center justify-between border-b border-borderColor pb-[20.5px] ">
-        <h2 className="text-[22px] font-bold">Students List</h2>
+        <h2 className="text-[22px] font-bold">Courses List</h2>
         <div className="flex items-center gap-[30px]">
           <button>
             <Image
@@ -54,10 +54,10 @@ export default async function Students() {
               height={19.25}
             />
           </button>
-          <Button>ADD NEW STUDENT</Button>
+          <Button>ADD NEW COURSE</Button>
         </div>
       </div>
-      <Table type="seperate" headerData={headerData} bodyData={students} />
+      <Table type="seperate" headerData={headerData} bodyData={courses} />
     </DashboardLayout>
   );
 }

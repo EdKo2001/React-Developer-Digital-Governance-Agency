@@ -53,7 +53,8 @@ async function getMetrics(): Promise<MetricProps[]> {
       } else {
         console.error(response.reason);
         return {
-          title: "Failed",
+          title:
+            index === 0 ? "Students" : index === 1 ? "Courses" : "Payments",
           value: "Failed",
         };
       }

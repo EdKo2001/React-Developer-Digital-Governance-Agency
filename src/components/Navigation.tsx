@@ -45,8 +45,8 @@ const NavigationLink = ({ href, text, imageSrc }: NavigationLinkProps) => {
 const navigationLinks: NavigationLinkProps[] = [
   { href: "/dashboard", text: "Home", imageSrc: "/images/navigation-home.svg" },
   {
-    href: "/course",
-    text: "Course",
+    href: "/courses",
+    text: "Courses",
     imageSrc: "/images/navigation-course.svg",
   },
   {

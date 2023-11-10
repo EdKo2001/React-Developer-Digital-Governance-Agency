@@ -9,7 +9,6 @@ export default function Logout() {
 
   useEffect(() => {
     if (isRediect) {
-      // TODO: Destroy cookie (token)
       redirect("/");
     }
   }, [isRediect]);
