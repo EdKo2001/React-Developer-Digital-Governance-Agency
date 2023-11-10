@@ -12,7 +12,7 @@ export default function DashboardLayout({
       <Sidebar />
       <div className="bg flex w-full flex-col gap-[36px] bg-[#F8F8F8]">
         <Header />
-        {children}
+        <div className="h-full">{children}</div>
       </div>
     </div>
   );

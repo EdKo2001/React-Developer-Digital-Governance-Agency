@@ -60,57 +60,42 @@ export default async function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div className="ml-5 flex w-[81%] flex-col items-stretch max-md:ml-0 max-md:w-full">
-        <div className="flex flex-col items-stretch max-md:max-w-full">
-          <div className="mt-8 w-full max-w-[1015px] self-center px-5 max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col max-md:items-stretch max-md:gap-0">
-              <div className="flex w-[34%] flex-col items-stretch max-md:ml-0 max-md:w-full">
-                <div className="mx-auto mt-1.5 flex w-full grow flex-col rounded-lg bg-sky-50 pb-7 pl-5 pr-5 pt-5 max-md:mt-10 max-md:pr-5">
-                  <img
-                    loading="lazy"
-                    src=""
-                    className="aspect-[5.63] w-full self-stretch overflow-hidden object-contain object-center"
-                  />
-                  <div className="mt-5 self-stretch whitespace-nowrap text-sm font-medium text-neutral-500">
-                    Students
-                  </div>
-                  <div className="mt-5 whitespace-nowrap text-3xl font-bold uppercase text-black">
-                    {studentsCount}
-                  </div>
-                </div>
-              </div>
-              <div className="ml-5 flex w-[34%] flex-col items-stretch max-md:ml-0 max-md:w-full">
-                <div className="mx-auto mt-2 flex w-full grow flex-col rounded-lg bg-fuchsia-50 px-5 pb-7 pt-5 max-md:mt-10">
-                  <img
-                    loading="lazy"
-                    src=""
-                    className="aspect-[6.14] w-full self-stretch overflow-hidden object-contain object-center"
-                  />
-                  <div className="mt-6 self-stretch whitespace-nowrap text-sm font-medium text-neutral-500">
-                    Course
-                  </div>
-                  <div className="mt-5 whitespace-nowrap text-right text-3xl font-bold uppercase text-black">
-                    {coursesCount}
-                  </div>
-                </div>
-              </div>
-              <div className="ml-5 flex w-[31%] flex-col items-stretch max-md:ml-0 max-md:w-full">
-                <div className="mx-auto flex w-full flex-col rounded-lg bg-amber-50 px-5 pb-6 pt-4 max-md:mt-10">
-                  <img
-                    loading="lazy"
-                    src=""
-                    className="aspect-[5.38] w-full self-stretch overflow-hidden object-contain object-center"
-                  />
-                  <div className="mt-5 self-stretch whitespace-nowrap text-sm font-medium uppercase text-neutral-500">
-                    Payments
-                  </div>
-                  <div className="mt-5 whitespace-nowrap text-right text-3xl font-bold uppercase text-black">
-                    INR {payment}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="mx-auto flex w-[80%] justify-evenly	  max-md:ml-0 max-md:w-full max-md:max-w-full max-md:flex-col max-md:gap-0">
+        <div className="  flex  w-[255px]   flex-col rounded-lg bg-sky-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full max-md:pr-5">
+          <Image
+            src="/images/students.svg"
+            alt="students count"
+            width={48}
+            height={38}
+          />
+          <h2 className="mt-5   text-sm font-medium text-gray">Students</h2>
+          <p className="mt-5  text-right  text-3xl font-bold  text-black">
+            {studentsCount}
+          </p>
+        </div>
+        <div className="  flex w-[255px]   flex-col rounded-lg bg-fuchsia-50  p-5  max-md:ml-0 max-md:mt-10 max-md:w-full">
+          <Image
+            src="/images/courses.svg"
+            alt="courses count"
+            width={28}
+            height={35}
+          />
+          <h2 className="mt-6   text-sm font-medium text-gray">Courses</h2>
+          <p className="mt-5  text-right text-3xl font-bold  text-black">
+            {coursesCount}
+          </p>
+        </div>
+        <div className="  flex w-[255px] flex-col rounded-lg bg-amber-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full">
+          <Image
+            src="/images/payments.svg"
+            alt="payments count"
+            width={35}
+            height={40}
+          />
+          <h2 className="mt-5   text-sm font-medium  text-gray">Payments</h2>
+          <p className="mt-5  text-right text-3xl font-bold  text-black">
+            <span className="text-lg">INR</span> {payment}
+          </p>
         </div>
       </div>
     </DashboardLayout>
