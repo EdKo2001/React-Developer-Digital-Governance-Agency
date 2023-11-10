@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import axios from "axios";
+
+import { axiosInstance } from "@/config";
 
 async function signInHandler(formData: FormData) {
   "use server";
@@ -12,7 +13,7 @@ async function signInHandler(formData: FormData) {
   let isRediect = false;
 
   try {
-    const res = await axios.post("http://localhost:3000/api/sign-in", {
+    const res = await axiosInstance.post("/sign-in", {
       email,
       password,
     });

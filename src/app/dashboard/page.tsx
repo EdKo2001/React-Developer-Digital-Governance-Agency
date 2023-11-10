@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 
-import axios from "axios";
+import { axiosInstance } from "@/config";
 
 import { DashboardLayout } from "@/components";
 
@@ -22,9 +22,9 @@ async function getMetrics(): Promise<MetricProps[]> {
 
   try {
     const responses = await Promise.allSettled([
-      axios.get("http://localhost:3000/api/students"),
-      axios.get("http://localhost:3000/api/courses"),
-      axios.get("http://localhost:3000/api/payment"),
+      axiosInstance.get("/students"),
+      axiosInstance.get("/courses"),
+      axiosInstance.get("/payment"),
     ]);
 
     const settledResponses: MetricProps[] = responses.map((response, index) => {
