@@ -1,4 +1,4 @@
-type Row = string[];
+type Row = { [key: string]: string };
 
 interface TableProps {
   headerData: string[];
@@ -23,9 +23,9 @@ const Table: React.FC<TableProps> = ({ headerData, bodyData }) => {
             key={idx}
             className={`h-[51px] ${idx % 2 === 0 ? "bg-white" : ""}`}
           >
-            {row.map((cell: string, cellIdx: number) => (
-              <td key={cellIdx} className="p-[13px]">
-                {cell}
+            {headerData.map((column: string, columnIdx: number) => (
+              <td key={columnIdx} className="p-[13px]">
+                {row[column]}
               </td>
             ))}
           </tr>
