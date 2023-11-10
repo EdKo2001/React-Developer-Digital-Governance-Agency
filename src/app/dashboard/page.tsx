@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
+import { revalidatePath } from "next/cache";
 
 import { axiosInstance } from "@/config";
 
@@ -19,6 +20,8 @@ interface MetricProps {
 
 async function getMetrics(): Promise<MetricProps[]> {
   "use server";
+
+  revalidatePath("/dashboard");
 
   try {
     const responses = await Promise.allSettled([
@@ -60,9 +63,9 @@ async function getMetrics(): Promise<MetricProps[]> {
   } catch (error) {
     console.error(error);
     return [
-      { title: "Failed", value: "Failed" },
-      { title: "Failed", value: "Failed" },
-      { title: "Failed", value: "Failed" },
+      { title: "Students", value: "Failed" },
+      { title: "Courses", value: "Failed" },
+      { title: "Payment", value: "Failed" },
     ];
   }
 }

@@ -33,55 +33,59 @@ const Table: React.FC<TableProps> = ({
           ))}
         </tr>
       </thead>
-      <tbody className="text-sm">
-        {bodyData.map((row: Row, idx: number) => (
-          <tr
-            key={idx}
-            className={`h-[51px] ${
-              type === "seperate"
-                ? "rounded-lg  border-b-[10px] border-[#F8F8F8] bg-white"
-                : idx % 2 === 0
-                ? "bg-white"
-                : ""
-            }`}
-          >
-            {headerData.map((column: string, columnIdx: number) => (
-              <td key={columnIdx} className="p-[13px]">
-                {column === "Avatar" ? (
-                  <Image
-                    src="/images/student.png"
-                    alt="student image"
-                    width={65}
-                    height={55}
-                    className="rounded-lg"
-                  />
-                ) : column === "Actions" ? (
-                  <div className="flex items-center gap-[33px]">
-                    <button type="button">
-                      <Image
-                        src="/images/edit.svg"
-                        alt="edit"
-                        width={19}
-                        height={19}
-                      />
-                    </button>
-                    <button type="button">
-                      <Image
-                        src="/images/trash.svg"
-                        alt="remove"
-                        width={16}
-                        height={18}
-                      />
-                    </button>
-                  </div>
-                ) : (
-                  row[column] ?? row[column.toLowerCase().replace(/ /g, "_")]
-                )}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      {bodyData.length === 0 ? (
+        "No Post type"
+      ) : (
+        <tbody className="text-sm">
+          {bodyData.map((row: Row, idx: number) => (
+            <tr
+              key={idx}
+              className={`h-[51px] ${
+                type === "seperate"
+                  ? "rounded-lg  border-b-[10px] border-[#F8F8F8] bg-white"
+                  : idx % 2 === 0
+                  ? "bg-white"
+                  : ""
+              }`}
+            >
+              {headerData.map((column: string, columnIdx: number) => (
+                <td key={columnIdx} className="p-[13px]">
+                  {column === "Avatar" ? (
+                    <Image
+                      src="/images/student.png"
+                      alt="student image"
+                      width={65}
+                      height={55}
+                      className="rounded-lg"
+                    />
+                  ) : column === "Actions" ? (
+                    <div className="flex items-center gap-[33px]">
+                      <button type="button">
+                        <Image
+                          src="/images/edit.svg"
+                          alt="edit"
+                          width={19}
+                          height={19}
+                        />
+                      </button>
+                      <button type="button">
+                        <Image
+                          src="/images/trash.svg"
+                          alt="remove"
+                          width={16}
+                          height={18}
+                        />
+                      </button>
+                    </div>
+                  ) : (
+                    row[column] ?? row[column.toLowerCase().replace(/ /g, "_")]
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      )}
     </table>
   );
 };

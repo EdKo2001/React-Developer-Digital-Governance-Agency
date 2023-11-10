@@ -1,11 +1,11 @@
 {
-  "name": "example",
+  "name": "react-developer-digital-governance-agency",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"next start\" \"json-server db.json --port 3001\"",
     "lint": "next lint",
     "json-server": "json-server --watch db.json --port 3001"
   },
@@ -13,8 +13,7 @@
     "axios": "^1.6.1",
     "next": "14.0.1",
     "react": "^18",
-    "react-dom": "^18",
-    "zod": "^3.22.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
@@ -22,6 +21,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "json-server": "^0.17.4",
@@ -29,6 +29,7 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "zod": "^3.22.4"
   }
 }

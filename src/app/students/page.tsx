@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Metadata } from "next";
+import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
 
@@ -15,6 +16,8 @@ export const metadata: Metadata = {
 async function getStudents() {
   "use server";
 
+  revalidatePath("/students");
+
   try {
     const res = await axiosInstance.get("students");
     res.data.forEach((student: { date_of_admission: string }) => {
@@ -27,7 +30,7 @@ async function getStudents() {
 }
 
 export default async function Payment() {
-  const students = await getStudents();
+  const students = (await getStudents()) || [];
   const headerData = [
     "Avatar",
     "Name",

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 import { Button } from "@/components/reusables";
 
@@ -34,6 +35,7 @@ async function signInHandler(formData: FormData) {
     console.error(error);
   }
 
+  revalidatePath("/");
   isRediect && redirect("/dashboard");
 }
 const SignIn = () => {
