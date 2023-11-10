@@ -75,8 +75,21 @@ const MetricBlock: React.FC<MetricProps> = ({
 }) => {
   const imageSrc = `/images/${title.toLowerCase()}.svg`;
 
+  // Define classes based on index
+  const cardBackgroundClasses = [
+    "bg-[#F0F9FF]",
+    "bg-[#FEF6FB]",
+    "bg-[#FEFBEC]",
+  ];
+
   return (
-    <div className="flex w-[255px] flex-col rounded-lg bg-sky-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full max-md:pr-5">
+    <div
+      className={`flex w-[255px] flex-col rounded-lg p-5 max-md:ml-0 max-md:mt-10 max-md:w-full max-md:pr-5 ${
+        cardBackgroundClasses[
+          title === "Students" ? 0 : title === "Courses" ? 1 : 2
+        ]
+      }`}
+    >
       <Image src={imageSrc} alt={title} width={imgWidth} height={imgHeight} />
       <h3 className="mt-5 text-sm font-medium text-gray">{title}</h3>
       <p className="mt-5 text-right text-3xl font-bold text-black">{value}</p>

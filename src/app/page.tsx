@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { cookies } from "next/headers";
 
+import { Button } from "@/components/reusables";
+
 import { axiosInstance } from "@/config";
 
 async function signInHandler(formData: FormData) {
@@ -72,12 +74,9 @@ const SignIn = () => {
             />
           </div>
         ))}
-        <button
-          type="submit"
-          className="mt-[30px] items-center self-stretch rounded bg-orange px-5 py-4 text-sm font-medium text-white"
-        >
+        <Button type="submit" className="mt-[30px]">
           SIGN IN
-        </button>
+        </Button>
         <div className="mt-[10px] text-center text-sm">
           <span className="text-gray">Forgot your password?</span>{" "}
           <Link href="#" className="font-medium text-orange underline">

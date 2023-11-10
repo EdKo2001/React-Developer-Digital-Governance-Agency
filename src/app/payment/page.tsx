@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { DashboardLayout } from "@/components";
 
 import { Table } from "@/components/reusables";
+
 import { axiosInstance } from "@/config";
 
 export const metadata: Metadata = {
@@ -33,6 +34,8 @@ export default async function Payment() {
     "Balance amount",
     "Date",
   ];
+
+  console.log("payments", payments);
 
   return (
     <DashboardLayout>
