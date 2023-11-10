@@ -96,7 +96,9 @@ const MetricBlock: React.FC<MetricProps> = ({
     >
       <Image src={imageSrc} alt={title} width={imgWidth} height={imgHeight} />
       <h3 className="mt-5 text-sm font-medium text-gray">{title}</h3>
-      <p className="mt-5 text-right text-3xl font-bold text-black">{value}</p>
+      <p className="mt-5 text-right text-3xl font-bold text-black">
+        <span className="text-lg">INR</span> {value}
+      </p>
     </div>
   );
 };
