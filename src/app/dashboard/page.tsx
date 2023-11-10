@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 import { DashboardLayout } from "@/components";
 
@@ -10,13 +10,14 @@ export const metadata: Metadata = {
   title: "Dashboard",
 };
 
-interface MetricsData {
-  studentsCount: number;
-  coursesCount: number;
-  payment: number;
+interface MetricProps {
+  title: string;
+  value: number | string;
+  imgWidth?: number;
+  imgHeight?: number;
 }
 
-async function getMetrics() {
+async function getMetrics(): Promise<MetricProps[]> {
   "use server";
 
   try {
@@ -26,77 +27,90 @@ async function getMetrics() {
       axios.get("http://localhost:3000/api/payment"),
     ]);
 
-    const settledResponses = responses.map((response) => {
+    const settledResponses: MetricProps[] = responses.map((response, index) => {
       if (response.status === "fulfilled") {
-        return response.value.data;
+        const data = response.value.data;
+        let value: number | string = "Failed";
+
+        if (index === 0 || index === 1) {
+          value = data.length;
+        } else if (index === 2) {
+          value = data.reduce(
+            (acc: number, cur: { "Amount Paid": number }) =>
+              (acc += +cur["Amount Paid"]),
+            0,
+          );
+        }
+
+        return {
+          title:
+            index === 0 ? "Students" : index === 1 ? "Courses" : "Payments",
+          value,
+        };
       } else {
         console.error(response.reason);
-        return "Failed";
+        return {
+          title: "Failed",
+          value: "Failed",
+        };
       }
     });
 
-    return {
-      studentsCount: settledResponses[0].length,
-      coursesCount: settledResponses[1].length,
-      payment: settledResponses[2].reduce(
-        (acc: number, cur: { "Amount Paid": number }) =>
-          (acc += +cur["Amount Paid"]),
-        0,
-      ),
-    };
+    return settledResponses;
   } catch (error) {
     console.error(error);
-    return {
-      studentsCount: "Failed",
-      coursesCount: "Failed",
-      payment: "Failed",
-    };
+    return [
+      { title: "Failed", value: "Failed" },
+      { title: "Failed", value: "Failed" },
+      { title: "Failed", value: "Failed" },
+    ];
   }
 }
 
+const MetricBlock: React.FC<MetricProps> = ({
+  title,
+  value,
+  imgWidth,
+  imgHeight,
+}) => {
+  const imageSrc = `/images/${title.toLowerCase()}.svg`;
+
+  return (
+    <div className="flex w-[255px] flex-col rounded-lg bg-sky-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full max-md:pr-5">
+      <Image src={imageSrc} alt={title} width={imgWidth} height={imgHeight} />
+      <h3 className="mt-5 text-sm font-medium text-gray">{title}</h3>
+      <p className="mt-5 text-right text-3xl font-bold text-black">{value}</p>
+    </div>
+  );
+};
+
 export default async function Dashboard() {
-  const { studentsCount, coursesCount, payment }: MetricsData =
-    await getMetrics();
+  const metrics = await getMetrics();
 
   return (
     <DashboardLayout>
       <div className="mx-auto flex w-[80%] justify-evenly	  max-md:ml-0 max-md:w-full max-md:max-w-full max-md:flex-col max-md:gap-0">
-        <div className="  flex  w-[255px]   flex-col rounded-lg bg-sky-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full max-md:pr-5">
-          <Image
-            src="/images/students.svg"
-            alt="students count"
-            width={48}
-            height={38}
+        {metrics.map((metric, index) => (
+          <MetricBlock
+            key={index}
+            title={metric.title}
+            value={metric.value}
+            imgWidth={
+              metric.title === "Students"
+                ? 48
+                : metric.title === "Courses"
+                ? 28
+                : 35
+            }
+            imgHeight={
+              metric.title === "Students"
+                ? 38
+                : metric.title === "Courses"
+                ? 35
+                : 40
+            }
           />
-          <h2 className="mt-5   text-sm font-medium text-gray">Students</h2>
-          <p className="mt-5  text-right  text-3xl font-bold  text-black">
-            {studentsCount}
-          </p>
-        </div>
-        <div className="  flex w-[255px]   flex-col rounded-lg bg-fuchsia-50  p-5  max-md:ml-0 max-md:mt-10 max-md:w-full">
-          <Image
-            src="/images/courses.svg"
-            alt="courses count"
-            width={28}
-            height={35}
-          />
-          <h2 className="mt-6   text-sm font-medium text-gray">Courses</h2>
-          <p className="mt-5  text-right text-3xl font-bold  text-black">
-            {coursesCount}
-          </p>
-        </div>
-        <div className="  flex w-[255px] flex-col rounded-lg bg-amber-50 p-5 max-md:ml-0 max-md:mt-10 max-md:w-full">
-          <Image
-            src="/images/payments.svg"
-            alt="payments count"
-            width={35}
-            height={40}
-          />
-          <h2 className="mt-5   text-sm font-medium  text-gray">Payments</h2>
-          <p className="mt-5  text-right text-3xl font-bold  text-black">
-            <span className="text-lg">INR</span> {payment}
-          </p>
-        </div>
+        ))}
       </div>
     </DashboardLayout>
   );
