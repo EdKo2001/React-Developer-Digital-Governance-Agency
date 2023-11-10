@@ -1,9 +1,11 @@
-import zod from "zod";
+import { z } from "zod";
 
-const envSchema = zod.object({
-  API_URL: zod.string().url(),
+const clientEnvSchema = z.object({
+  NEXT_PUBLIC_API_KEY: z.string().url(),
 });
 
-const env = envSchema.parse(process.env);
+const env = clientEnvSchema.parse({
+  NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
+});
 
 export default env;

@@ -1,17 +1,21 @@
 import Image from "next/image";
 
+import { EventButtonProps } from "@/app/students/RemoveStudentButton";
+
 type Row = { [key: string]: string };
 
 interface TableProps {
   type?: "strip" | "seperate";
   headerData: string[];
   bodyData: Row[];
+  RemoveComponent: React.ComponentType<EventButtonProps>;
 }
 
 const Table: React.FC<TableProps> = ({
   headerData,
   bodyData,
   type = "strip",
+  RemoveComponent,
 }) => {
   return (
     <table className="table w-full text-left">
@@ -68,14 +72,15 @@ const Table: React.FC<TableProps> = ({
                           height={19}
                         />
                       </button>
-                      <button type="button">
+                      {/* <button type="button">
                         <Image
                           src="/images/trash.svg"
                           alt="remove"
                           width={16}
                           height={18}
                         />
-                      </button>
+                      </button> */}
+                      <RemoveComponent id={row.id} />
                     </div>
                   ) : (
                     row[column] ?? row[column.toLowerCase().replace(/ /g, "_")]

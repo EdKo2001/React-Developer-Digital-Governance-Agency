@@ -1,13 +1,6 @@
 {
   "students": [
     {
-      "id": 1,
-      "name": "Aria Smith",
-      "email": "aria.smith@example.com",
-      "phone": "5550100",
-      "personal_number": "987654321"
-    },
-    {
       "id": 2,
       "name": "Liam Johnson",
       "email": "liam.johnson@example.com",
@@ -41,13 +34,6 @@
       "email": "noah.williams@example.com",
       "phone": "5550102",
       "personal_number": "987654323"
-    },
-    {
-      "name": "Raj2",
-      "email": "test@test.com2",
-      "phone": "12345678902",
-      "personal_number": "12345678902",
-      "id": 7
     },
     {
       "id": 9,

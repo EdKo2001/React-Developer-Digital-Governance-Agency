@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-
 import { Button, Table } from "@/components/reusables";
+import RemoveStudentButton from "./RemoveStudentButton";
 
 import { axiosInstance } from "@/config";
 
@@ -19,7 +19,7 @@ async function getStudents() {
   revalidatePath("/students");
 
   try {
-    const res = await axiosInstance.get("students");
+    const res = await axiosInstance.get("/students");
     res.data.forEach((student: { date_of_admission: string }) => {
       student.date_of_admission = "08-Dec, 2021";
     });
@@ -57,7 +57,12 @@ export default async function Students() {
           <Button>ADD NEW STUDENT</Button>
         </div>
       </div>
-      <Table type="seperate" headerData={headerData} bodyData={students} />
+      <Table
+        type="seperate"
+        headerData={headerData}
+        bodyData={students}
+        RemoveComponent={RemoveStudentButton}
+      />
     </DashboardLayout>
   );
 }

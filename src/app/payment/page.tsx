@@ -19,7 +19,7 @@ async function getPayments() {
   revalidatePath("/payment");
 
   try {
-    const res = await axiosInstance.get("payment");
+    const res = await axiosInstance.get("/payment");
 
     return res.data;
   } catch (error) {

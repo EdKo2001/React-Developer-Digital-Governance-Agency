@@ -19,7 +19,7 @@ async function getCourses() {
   revalidatePath("/courses");
 
   try {
-    const res = await axiosInstance.get("courses");
+    const res = await axiosInstance.get("/courses");
     res.data.forEach((course: { instructor: string }) => {
       course.instructor = "Name";
     });
