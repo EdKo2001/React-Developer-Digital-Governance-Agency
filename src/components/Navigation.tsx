@@ -37,7 +37,7 @@ const NavigationLink = ({ href, text, imageSrc }: NavigationLinkProps) => {
           style={{ width: "fit-content", height: "auto" }}
         />
       </div>
-      {text}
+      <span className="w-[50px]">{text}</span>
     </Link>
   );
 };
