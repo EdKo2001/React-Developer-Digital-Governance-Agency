@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  style: ["normal"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Sign In",
@@ -16,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="h-screen">{children}</body>
+      <body className={`${montserrat.className}  h-screen`}>{children}</body>
     </html>
   );
 }

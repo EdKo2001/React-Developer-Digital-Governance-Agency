@@ -36,8 +36,8 @@ export default async function Payment() {
 
   return (
     <DashboardLayout>
-      <div className="flex items-center justify-between border-b border-borderColor pb-[20.5px] text-[22px] font-bold">
-        <h2>Payment Details</h2>
+      <div className="flex items-center justify-between border-b border-borderColor pb-[20.5px] ">
+        <h2 className="text-[22px] font-bold">Payment Details</h2>
         <button>
           <Image src="/images/sort.svg" alt="sort" width={14} height={19.25} />
         </button>
