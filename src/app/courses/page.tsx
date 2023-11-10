@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-
 import { Button, Table } from "@/components/reusables";
+import RemoveCourseButton from "./RemoveCourseButton";
 
 import { axiosInstance } from "@/config";
 
@@ -57,7 +57,12 @@ export default async function Courses() {
           <Button>ADD NEW COURSE</Button>
         </div>
       </div>
-      <Table type="seperate" headerData={headerData} bodyData={courses} />
+      <Table
+        type="seperate"
+        headerData={headerData}
+        bodyData={courses}
+        RemoveComponent={RemoveCourseButton}
+      />
     </DashboardLayout>
   );
 }

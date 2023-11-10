@@ -8,7 +8,7 @@ interface TableProps {
   type?: "strip" | "seperate";
   headerData: string[];
   bodyData: Row[];
-  RemoveComponent: React.ComponentType<EventButtonProps>;
+  RemoveComponent?: React.ComponentType<EventButtonProps>;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -72,15 +72,7 @@ const Table: React.FC<TableProps> = ({
                           height={19}
                         />
                       </button>
-                      {/* <button type="button">
-                        <Image
-                          src="/images/trash.svg"
-                          alt="remove"
-                          width={16}
-                          height={18}
-                        />
-                      </button> */}
-                      <RemoveComponent id={row.id} />
+                      {RemoveComponent && <RemoveComponent id={row.id} />}
                     </div>
                   ) : (
                     row[column] ?? row[column.toLowerCase().replace(/ /g, "_")]

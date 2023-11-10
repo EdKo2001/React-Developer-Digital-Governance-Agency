@@ -59,28 +59,12 @@
   ],
   "courses": [
     {
-      "id": 1,
-      "course_name": "Introduction to Biology",
-      "course_difficulty": "Beginner",
-      "teacher_id": 1,
-      "start_date": "2023-09-01",
-      "end_date": "2023-12-15"
-    },
-    {
       "id": 2,
       "course_name": "Fundamentals of Mathematics",
       "course_difficulty": "Intermediate",
       "teacher_id": 2,
       "start_date": "2023-09-01",
       "end_date": "2023-12-15"
-    },
-    {
-      "id": 3,
-      "course_name": "World History Overview",
-      "course_difficulty": "Advanced",
-      "teacher_id": 1,
-      "start_date": "2023-01-15",
-      "end_date": "2023-05-30"
     },
     {
       "id": 4,
