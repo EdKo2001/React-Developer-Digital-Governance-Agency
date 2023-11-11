@@ -1,11 +1,25 @@
 {
   "students": [
     {
-      "name": "Noah Williams12",
+      "id": 1,
+      "name": "Aria Smith",
+      "email": "aria.smith@example.com",
+      "phone": "5550100",
+      "personal_number": "987654321"
+    },
+    {
+      "id": 2,
+      "name": "Liam Johnson",
+      "email": "liam.johnson@example.com",
+      "phone": "5550101",
+      "personal_number": "987654322"
+    },
+    {
+      "id": 3,
+      "name": "Noah Williams",
       "email": "noah.williams@example.com",
       "phone": "5550102",
-      "personal_number": "987654323",
-      "id": 3
+      "personal_number": "987654323"
     },
     {
       "id": 4,
@@ -29,74 +43,18 @@
       "personal_number": "987654323"
     },
     {
+      "name": "Raj2",
+      "email": "test@test.com2",
+      "phone": "12345678902",
+      "personal_number": "12345678902",
+      "id": 7
+    },
+    {
       "id": 9,
       "name": "Noah Williams",
       "email": "noah.williams@example.com",
       "phone": "5550102",
       "personal_number": "987654323"
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "123",
-      "id": 10
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "123123",
-      "id": 11
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "1231232 ",
-      "id": 12
-    },
-    {
-      "name": "Eduard Koshkelyan1123",
-      "email": "eduardko2001@gmail.com1123",
-      "phone": "+9955985135901123",
-      "personal_number": "1231232 123123",
-      "id": 13
-    },
-    {
-      "name": "Eduard Koshkelyan1123",
-      "email": "eduardko2001@gmail.com1123",
-      "phone": "+9955985135901123",
-      "personal_number": "1231232223123",
-      "id": 14
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "12312312313asd",
-      "id": 15
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "123333",
-      "id": 17
-    },
-    {
-      "name": "Eduard Koshkelyan",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "123333333",
-      "id": 18
-    },
-    {
-      "name": "23",
-      "email": "eduardko2001@gmail.com",
-      "phone": "+995598513590",
-      "personal_number": "1",
-      "id": 19
     }
   ],
   "teachers": [
@@ -114,6 +72,30 @@
     }
   ],
   "courses": [
+    {
+      "id": 1,
+      "course_name": "Introduction to Biology",
+      "course_difficulty": "Beginner",
+      "teacher_id": 1,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 2,
+      "course_name": "Fundamentals of Mathematics",
+      "course_difficulty": "Intermediate",
+      "teacher_id": 2,
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    },
+    {
+      "id": 3,
+      "course_name": "World History Overview",
+      "course_difficulty": "Advanced",
+      "teacher_id": 1,
+      "start_date": "2023-01-15",
+      "end_date": "2023-05-30"
+    },
     {
       "id": 4,
       "course_name": "Introduction to Biology",
@@ -155,12 +137,12 @@
       "end_date": "2023-12-15"
     },
     {
-      "course_name": "World History Overview1",
+      "id": 9,
+      "course_name": "World History Overview",
       "course_difficulty": "Advanced",
-      "teacher": "ed",
+      "teacher_id": 1,
       "start_date": "2023-01-15",
-      "end_date": "2023-05-30",
-      "id": 9
+      "end_date": "2023-05-30"
     }
   ],
   "users": [

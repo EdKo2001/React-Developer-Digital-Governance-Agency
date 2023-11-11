@@ -5,7 +5,7 @@ import { Form } from "@/components/reusables";
 
 import { axiosInstance } from "@/config";
 
-async function signInHandler(formData: FormData) {
+async function signInHandler(currentState: string, formData: FormData) {
   "use server";
 
   const email = formData.get("email")?.toString();
@@ -32,6 +32,7 @@ async function signInHandler(formData: FormData) {
   revalidatePath("/");
   isRediect && redirect("/dashboard");
 }
+
 const SignIn = () => {
   const fields = [
     { type: "email", name: "email", label: "Email" },
