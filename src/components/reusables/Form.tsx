@@ -12,12 +12,17 @@ export interface Field {
   label?: string;
 }
 
+export type FormActionType = (
+  currentState: string,
+  formData: FormData,
+) => Promise<void | string>;
+
 interface FormProps {
   title: string;
   text?: string;
   buttonText: string;
   fields: Field[];
-  action: (currentState: string, formData: FormData) => Promise<void>;
+  action: FormActionType;
   formData?: Record<string, string>;
   className?: string;
   cb?: (randomToBeUnique: number) => void;

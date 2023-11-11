@@ -3,7 +3,7 @@ import Image from "next/image";
 import { EventButtonProps } from "@/app/students/RemoveStudentButton";
 
 import { ConnectModalForm } from ".";
-import { Field } from "./Form";
+import { Field, FormActionType } from "./Form";
 
 type Row = { [key: string]: string };
 
@@ -12,7 +12,7 @@ interface TableProps {
   headerData: string[];
   bodyData: Row[];
   RemoveComponent?: React.ComponentType<EventButtonProps>;
-  editAction?: (currentState: string, formData: FormData) => Promise<string>;
+  editAction?: FormActionType;
   fields?: Field[];
 }
 

@@ -11,7 +11,7 @@ interface ConnectModalFormProps {
   buttonText: string;
   OpenComponent: React.ReactElement<{ onClick: () => void }>;
   fields: Field[];
-  action: (currentState: string, formData: FormData) => Promise<string>;
+  action: (currentState: string, formData: FormData) => Promise<string | void>;
   formData?: Record<string, string>;
 }
 
@@ -33,7 +33,7 @@ const ConnectModalForm: FC<ConnectModalFormProps> = ({
         text={text}
         buttonText={buttonText}
         fields={fields}
-        action={action as unknown as (state: void | null) => void}
+        action={action}
         formData={formData}
         cb={() => setOpen(Math.random())}
       />
