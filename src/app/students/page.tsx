@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-import { Button, Modal, Table } from "@/components/reusables";
+import { Button, Form, Modal, Table } from "@/components/reusables";
 import RemoveStudentButton from "./RemoveStudentButton";
 
 import { axiosInstance } from "@/config";
@@ -29,6 +29,28 @@ async function getStudents() {
   }
 }
 
+async function addStudent(formData: FormData) {
+  "use server";
+
+  const name = formData.get("name")?.toString();
+  const email = formData.get("email")?.toString();
+  const phone = formData.get("phone")?.toString();
+  const personal_number = formData.get("personal_number")?.toString();
+
+  try {
+    await axiosInstance.post("/students/create", {
+      name,
+      email,
+      phone,
+      personal_number,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  revalidatePath("/students");
+}
+
 export default async function Students() {
   const students = (await getStudents()) || [];
   const headerData = [
@@ -39,6 +61,23 @@ export default async function Students() {
     "Personal Number",
     "Date of admission",
     "Actions",
+  ];
+  const fields = [
+    { type: "text", name: "name", label: "Name" },
+    { type: "email", name: "email", label: "Email" },
+    { type: "tel", name: "phone", label: "Phone" },
+    {
+      type: "text",
+      name: "personal_number",
+      label: "Personal Number",
+      last: true,
+    },
+    // {
+    //   type: "date",
+    //   name: "admission_date",
+    //   label: "Date of Admission",
+    //   last: true,
+    // },
   ];
 
   return (
@@ -54,8 +93,16 @@ export default async function Students() {
               height={19.25}
             />
           </button>
-          <Modal OpenComponent={<Button>ADD NEW STUDENT</Button>}>
-            hi there world!
+          <Modal
+            OpenComponent={<Button>ADD NEW STUDENT</Button>}
+            action={addStudent}
+          >
+            <Form
+              title="add student"
+              buttonText="add"
+              fields={fields}
+              action={addStudent}
+            />
           </Modal>
         </div>
       </div>

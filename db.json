@@ -41,6 +41,62 @@
       "email": "noah.williams@example.com",
       "phone": "5550102",
       "personal_number": "987654323"
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "123",
+      "id": 10
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "123123",
+      "id": 11
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "1231232 ",
+      "id": 12
+    },
+    {
+      "name": "Eduard Koshkelyan1123",
+      "email": "eduardko2001@gmail.com1123",
+      "phone": "+9955985135901123",
+      "personal_number": "1231232 123123",
+      "id": 13
+    },
+    {
+      "name": "Eduard Koshkelyan1123",
+      "email": "eduardko2001@gmail.com1123",
+      "phone": "+9955985135901123",
+      "personal_number": "1231232223123",
+      "id": 14
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "12312312313asd",
+      "id": 15
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "12",
+      "id": 16
+    },
+    {
+      "name": "Eduard Koshkelyan",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "123333",
+      "id": 17
     }
   ],
   "teachers": [

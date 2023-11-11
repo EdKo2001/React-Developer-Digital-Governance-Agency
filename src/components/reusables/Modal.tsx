@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useFormStatus } from "react-dom";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -43,9 +44,9 @@ const ModalComponent = ({
         className="fixed left-0 top-0 h-full w-full cursor-pointer bg-black bg-opacity-50"
         onClick={closeModal}
       />
-      <div className="relative z-10 rounded-lg bg-white p-8">
+      <div className="relative z-10 rounded-[20px]  bg-white px-[30px] pb-[75px] pt-[52px]">
         <span
-          className="absolute right-2 top-2 cursor-pointer text-2xl"
+          className="absolute right-4 top-3 cursor-pointer text-3xl"
           onClick={closeModal}
         >
           &times;
@@ -59,9 +60,11 @@ const ModalComponent = ({
 const Modal = ({
   children,
   OpenComponent,
+  action,
 }: {
   children: React.ReactNode;
   OpenComponent: React.ReactElement<{ onClick: () => void }>;
+  action: (formData: FormData) => Promise<any>;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
