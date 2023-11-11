@@ -1,11 +1,11 @@
 {
   "students": [
     {
-      "id": 3,
-      "name": "Noah Williams",
+      "name": "Noah Williams12",
       "email": "noah.williams@example.com",
       "phone": "5550102",
-      "personal_number": "987654323"
+      "personal_number": "987654323",
+      "id": 3
     },
     {
       "id": 4,
@@ -81,15 +81,22 @@
       "name": "Eduard Koshkelyan",
       "email": "eduardko2001@gmail.com",
       "phone": "+995598513590",
-      "personal_number": "12",
-      "id": 16
+      "personal_number": "123333",
+      "id": 17
     },
     {
       "name": "Eduard Koshkelyan",
       "email": "eduardko2001@gmail.com",
       "phone": "+995598513590",
-      "personal_number": "123333",
-      "id": 17
+      "personal_number": "123333333",
+      "id": 18
+    },
+    {
+      "name": "23",
+      "email": "eduardko2001@gmail.com",
+      "phone": "+995598513590",
+      "personal_number": "1",
+      "id": 19
     }
   ],
   "teachers": [
@@ -148,27 +155,12 @@
       "end_date": "2023-12-15"
     },
     {
-      "id": 9,
-      "course_name": "World History Overview",
+      "course_name": "World History Overview1",
       "course_difficulty": "Advanced",
-      "teacher_id": 1,
+      "teacher": "ed",
       "start_date": "2023-01-15",
-      "end_date": "2023-05-30"
-    },
-    {
-      "course_name": "new course",
-      "course_difficulty": "hard",
-      "teacher": "ed",
-      "start_date": "2023-11-12",
-      "id": 10
-    },
-    {
-      "course_name": "new course12",
-      "course_difficulty": "hard",
-      "teacher": "ed",
-      "start_date": "2023-11-19",
-      "end_date": "2023-11-26",
-      "id": 11
+      "end_date": "2023-05-30",
+      "id": 9
     }
   ],
   "users": [

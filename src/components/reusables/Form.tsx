@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 
 import { Button, FormGroup } from ".";
+import { useFormState } from "react-dom";
 
 export interface Field {
   type: string;
@@ -13,9 +16,10 @@ interface FormProps {
   text?: string;
   buttonText: string;
   fields: Field[];
-  action: (formData: FormData) => Promise<any>;
+  action: (state: void | null) => void;
   formData?: Record<string, string>;
   className?: string;
+  cb: (randomToBeUnique: number) => void;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -26,13 +30,22 @@ const Form: React.FC<FormProps> = ({
   action,
   formData,
   className,
+  cb,
 }) => {
+  const [message, formAction] = useFormState(action, null);
+
+  console.log("message", message);
+
+  useEffect(() => {
+    message && cb(Math.random());
+  }, [message, cb]);
+
   return (
     <form
       className={`flex w-[475px] max-w-full flex-col rounded-[20px] ${
         className ? className : ""
       }`}
-      action={action}
+      action={formAction}
     >
       <h1
         className={`${

@@ -60,11 +60,17 @@ const ModalComponent = ({
 const Modal = ({
   children,
   OpenComponent,
+  closeModalForce,
 }: {
   children: React.ReactNode;
   OpenComponent: React.ReactElement<{ onClick: () => void }>;
+  closeModalForce?: number;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [closeModalForce]);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);

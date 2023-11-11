@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-import { Button, Form, Modal, Table } from "@/components/reusables";
+import { Button, ConnectModalForm, Table } from "@/components/reusables";
 import RemoveStudentButton from "./RemoveStudentButton";
 
 import { axiosInstance } from "@/config";
@@ -29,7 +29,7 @@ async function getStudents() {
   }
 }
 
-async function addStudent(formData: FormData) {
+async function addStudent(currentState: string, formData: FormData) {
   "use server";
 
   const name = formData.get("name")?.toString();
@@ -49,9 +49,10 @@ async function addStudent(formData: FormData) {
   }
 
   revalidatePath("/students");
+  return "Close modal";
 }
 
-async function updateStudent(formData: FormData) {
+async function updateStudent(currentState: string, formData: FormData) {
   "use server";
 
   const id = formData.get("id")?.toString();
@@ -72,6 +73,8 @@ async function updateStudent(formData: FormData) {
   }
 
   revalidatePath("/students");
+
+  return "Close modal";
 }
 
 export default async function Students() {
@@ -109,14 +112,13 @@ export default async function Students() {
               height={19.25}
             />
           </button>
-          <Modal OpenComponent={<Button>ADD NEW STUDENT</Button>}>
-            <Form
-              title="add student"
-              buttonText="add"
-              fields={fields}
-              action={addStudent}
-            />
-          </Modal>
+          <ConnectModalForm
+            OpenComponent={<Button>ADD NEW STUDENT</Button>}
+            title="add student"
+            fields={fields}
+            buttonText="add"
+            action={addStudent}
+          />
         </div>
       </div>
       <Table

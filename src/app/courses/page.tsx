@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-import { Button, Form, Modal, Table } from "@/components/reusables";
+import { Button, ConnectModalForm, Table } from "@/components/reusables";
 import RemoveCourseButton from "./RemoveCourseButton";
 
 import { axiosInstance } from "@/config";
@@ -20,8 +20,8 @@ async function getCourses() {
 
   try {
     const res = await axiosInstance.get("/courses");
-    res.data.forEach((course: { instructor: string }) => {
-      course.instructor = "Name";
+    res.data.forEach((course: { teacher: string }) => {
+      course.teacher = "Name";
     });
     return res.data;
   } catch (error) {
@@ -29,7 +29,7 @@ async function getCourses() {
   }
 }
 
-async function addCourse(formData: FormData) {
+async function addCourse(currentState: string, formData: FormData) {
   "use server";
 
   const course_name = formData.get("course_name")?.toString();
@@ -51,9 +51,10 @@ async function addCourse(formData: FormData) {
   }
 
   revalidatePath("/students");
+  return "Close modal";
 }
 
-async function updateCourse(formData: FormData) {
+async function updateCourse(currentState: string, formData: FormData) {
   "use server";
 
   const id = formData.get("id")?.toString();
@@ -76,6 +77,7 @@ async function updateCourse(formData: FormData) {
   }
 
   revalidatePath("/students");
+  return "Close modal";
 }
 
 export default async function Courses() {
@@ -84,12 +86,11 @@ export default async function Courses() {
     "Avatar",
     "Course Name",
     "Course Difficulty",
-    "Instructor",
+    "Teacher",
     "Start Date",
     "End Date",
     "Actions",
   ];
-
   const fields = [
     { type: "text", name: "course_name", label: "Course Name" },
     { type: "text", name: "course_difficulty", label: "Course Difficulty" },
@@ -119,16 +120,14 @@ export default async function Courses() {
               height={19.25}
             />
           </button>
-
-          <Modal OpenComponent={<Button>ADD NEW COURSE</Button>}>
-            <Form
-              title="add course"
-              text="Add more courses"
-              buttonText="add"
-              fields={fields}
-              action={addCourse}
-            />
-          </Modal>
+          <ConnectModalForm
+            OpenComponent={<Button>ADD NEW COURSE</Button>}
+            title="add course"
+            text="Add more courses"
+            fields={fields}
+            buttonText="add"
+            action={addCourse}
+          />
         </div>
       </div>
       <Table

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { EventButtonProps } from "@/app/students/RemoveStudentButton";
 
-import { Form, Modal } from ".";
+import { ConnectModalForm } from ".";
 import { Field } from "./Form";
 
 type Row = { [key: string]: string };
@@ -12,7 +12,7 @@ interface TableProps {
   headerData: string[];
   bodyData: Row[];
   RemoveComponent?: React.ComponentType<EventButtonProps>;
-  editAction?: (formData: FormData) => Promise<void>;
+  editAction?: (currentState: string, formData: FormData) => Promise<string>;
   fields?: Field[];
 }
 
@@ -29,7 +29,7 @@ const Table: React.FC<TableProps> = ({
       return (
         <>
           {RemoveComponent && <RemoveComponent id={row.id} />}
-          <Modal
+          <ConnectModalForm
             OpenComponent={
               <button type="button">
                 <Image
@@ -40,15 +40,12 @@ const Table: React.FC<TableProps> = ({
                 />
               </button>
             }
-          >
-            <Form
-              title="update student"
-              buttonText="update"
-              fields={[{ type: "hidden", name: "id" }, ...fields]}
-              formData={row}
-              action={editAction!}
-            />
-          </Modal>
+            title="update student"
+            fields={[{ type: "hidden", name: "id" }, ...fields]}
+            buttonText="update"
+            formData={row}
+            action={editAction!}
+          />
         </>
       );
     }
