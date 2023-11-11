@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-import { Button, Table } from "@/components/reusables";
+import { Button, Modal, Table } from "@/components/reusables";
 import RemoveStudentButton from "./RemoveStudentButton";
 
 import { axiosInstance } from "@/config";
@@ -54,7 +54,9 @@ export default async function Students() {
               height={19.25}
             />
           </button>
-          <Button>ADD NEW STUDENT</Button>
+          <Modal OpenComponent={<Button>ADD NEW STUDENT</Button>}>
+            hi there world!
+          </Modal>
         </div>
       </div>
       <Table
