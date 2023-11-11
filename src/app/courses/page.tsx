@@ -53,6 +53,31 @@ async function addCourse(formData: FormData) {
   revalidatePath("/students");
 }
 
+async function updateCourse(formData: FormData) {
+  "use server";
+
+  const id = formData.get("id")?.toString();
+  const course_name = formData.get("course_name")?.toString();
+  const course_difficulty = formData.get("course_difficulty")?.toString();
+  const teacher = formData.get("teacher")?.toString();
+  const start_date = formData.get("start_date")?.toString();
+  const end_date = formData.get("end_date")?.toString();
+
+  try {
+    await axiosInstance.put(`/courses/update/${id}`, {
+      course_name,
+      course_difficulty,
+      teacher,
+      start_date,
+      end_date,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  revalidatePath("/students");
+}
+
 export default async function Courses() {
   const courses = (await getCourses()) || [];
   const headerData = [
@@ -111,6 +136,8 @@ export default async function Courses() {
         headerData={headerData}
         bodyData={courses}
         RemoveComponent={RemoveCourseButton}
+        editAction={updateCourse}
+        fields={fields}
       />
     </DashboardLayout>
   );
