@@ -15,6 +15,7 @@ interface FormProps {
   buttonText: string;
   fields: Field[];
   action: (formData: FormData) => Promise<any>;
+  formData?: Record<string, any>;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -23,6 +24,7 @@ const Form: React.FC<FormProps> = ({
   buttonText,
   fields,
   action,
+  formData,
 }) => {
   return (
     <form
@@ -46,7 +48,11 @@ const Form: React.FC<FormProps> = ({
         </p>
       )}
       {fields.map((field, index) => (
-        <FormGroup key={index} {...field} />
+        <FormGroup
+          key={index}
+          {...field}
+          defaultValue={formData?.[field.name]}
+        />
       ))}
       <Button type="submit" className="mt-[30px] uppercase">
         {buttonText}

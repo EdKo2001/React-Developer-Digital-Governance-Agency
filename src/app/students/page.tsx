@@ -51,6 +51,29 @@ async function addStudent(formData: FormData) {
   revalidatePath("/students");
 }
 
+async function updateStudent(formData: FormData) {
+  "use server";
+
+  const id = formData.get("id")?.toString();
+  const name = formData.get("name")?.toString();
+  const email = formData.get("email")?.toString();
+  const phone = formData.get("phone")?.toString();
+  const personal_number = formData.get("personal_number")?.toString();
+
+  try {
+    await axiosInstance.put(`/students/update/${id}`, {
+      name,
+      email,
+      phone,
+      personal_number,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  revalidatePath("/students");
+}
+
 export default async function Students() {
   const students = (await getStudents()) || [];
   const headerData = [
@@ -93,10 +116,7 @@ export default async function Students() {
               height={19.25}
             />
           </button>
-          <Modal
-            OpenComponent={<Button>ADD NEW STUDENT</Button>}
-            action={addStudent}
-          >
+          <Modal OpenComponent={<Button>ADD NEW STUDENT</Button>}>
             <Form
               title="add student"
               buttonText="add"
@@ -111,6 +131,8 @@ export default async function Students() {
         headerData={headerData}
         bodyData={students}
         RemoveComponent={RemoveStudentButton}
+        editAction={updateStudent}
+        fields={fields}
       />
     </DashboardLayout>
   );

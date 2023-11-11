@@ -60,11 +60,9 @@ const ModalComponent = ({
 const Modal = ({
   children,
   OpenComponent,
-  action,
 }: {
   children: React.ReactNode;
   OpenComponent: React.ReactElement<{ onClick: () => void }>;
-  action: (formData: FormData) => Promise<any>;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 

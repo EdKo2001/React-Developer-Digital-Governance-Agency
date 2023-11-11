@@ -12,7 +12,11 @@ const FormGroup: React.FC<FormGroupProps> = ({
   ...inputProps
 }) => {
   return (
-    <div className={`flex flex-col gap-[10px] ${!last ? "mb-5" : ""}`}>
+    <div
+      className={`flex flex-col ${
+        inputProps.type !== "hidden" ? "gap-[10px]" : ""
+      }  ${inputProps.type !== "hidden" && !last ? "mb-5" : ""}`}
+    >
       <label
         htmlFor={inputProps.name}
         className="self-stretch text-sm font-medium text-gray"

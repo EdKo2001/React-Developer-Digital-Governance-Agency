@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import { EventButtonProps } from "@/app/students/RemoveStudentButton";
 
+import { Form, Modal } from ".";
+
 type Row = { [key: string]: string };
 
 interface TableProps {
@@ -9,6 +11,8 @@ interface TableProps {
   headerData: string[];
   bodyData: Row[];
   RemoveComponent?: React.ComponentType<EventButtonProps>;
+  editAction?: (formData: FormData) => Promise<void>;
+  fields?: any;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -16,6 +20,8 @@ const Table: React.FC<TableProps> = ({
   bodyData,
   type = "strip",
   RemoveComponent,
+  editAction,
+  fields,
 }) => {
   return (
     <table className="table w-full text-left">
@@ -64,14 +70,29 @@ const Table: React.FC<TableProps> = ({
                     />
                   ) : column === "Actions" ? (
                     <div className="flex items-center gap-[33px]">
-                      <button type="button">
-                        <Image
-                          src="/images/edit.svg"
-                          alt="edit"
-                          width={19}
-                          height={19}
-                        />
-                      </button>
+                      {fields.length > 0 && (
+                        <Modal
+                          OpenComponent={
+                            <button type="button">
+                              <Image
+                                src="/images/edit.svg"
+                                alt="edit"
+                                width={19}
+                                height={19}
+                              />
+                            </button>
+                          }
+                        >
+                          <Form
+                            title="update student"
+                            buttonText="update"
+                            fields={[{ type: "hidden", name: "id" }, ...fields]}
+                            formData={row}
+                            action={editAction!}
+                          />
+                        </Modal>
+                      )}
+
                       {RemoveComponent && <RemoveComponent id={row.id} />}
                     </div>
                   ) : (
