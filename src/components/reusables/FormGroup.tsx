@@ -1,7 +1,7 @@
 import React from "react";
 
 interface FormGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   last?: boolean;
 }
 
@@ -11,20 +11,25 @@ const FormGroup: React.FC<FormGroupProps> = ({
   required = true,
   ...inputProps
 }) => {
+  const hiddenType = inputProps.type === "hidden";
+  const showMarginBottom = !hiddenType && !last;
+
   return (
     <div
-      className={`flex flex-col ${
-        inputProps.type !== "hidden" ? "gap-[10px]" : ""
-      }  ${inputProps.type !== "hidden" && !last ? "mb-5" : ""}`}
+      className={`flex flex-col ${!hiddenType ? "gap-[10px]" : ""}  ${
+        showMarginBottom ? "mb-5" : ""
+      }`}
     >
-      <label
-        htmlFor={inputProps.name}
-        className="self-stretch text-sm font-medium text-gray"
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={inputProps.name}
+          className="text-sm font-medium text-gray"
+        >
+          {label}
+        </label>
+      )}
       <input
-        className="self-stretch rounded border border-solid border-borderColor bg-white px-[15px] py-[13px] text-xs text-black placeholder-lightGray"
+        className="rounded border border-solid border-borderColor bg-white px-[15px] py-[13px] text-xs text-black placeholder-lightGray"
         placeholder={`Enter your ${label}`}
         {...inputProps}
         required={required}

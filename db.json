@@ -1,13 +1,6 @@
 {
   "students": [
     {
-      "name": "Liam Johnson12",
-      "email": "liam.johnson@example.com",
-      "phone": "5550101",
-      "personal_number": "987654322",
-      "id": 2
-    },
-    {
       "id": 3,
       "name": "Noah Williams",
       "email": "noah.williams@example.com",

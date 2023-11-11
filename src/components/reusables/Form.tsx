@@ -2,11 +2,10 @@ import React from "react";
 
 import { Button, FormGroup } from ".";
 
-interface Field {
+export interface Field {
   type: string;
   name: string;
-  label: string;
-  last?: boolean;
+  label?: string;
 }
 
 interface FormProps {
@@ -15,7 +14,8 @@ interface FormProps {
   buttonText: string;
   fields: Field[];
   action: (formData: FormData) => Promise<any>;
-  formData?: Record<string, any>;
+  formData?: Record<string, string>;
+  className?: string;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -25,10 +25,13 @@ const Form: React.FC<FormProps> = ({
   fields,
   action,
   formData,
+  className,
 }) => {
   return (
     <form
-      className="flex w-[475px] max-w-full flex-col rounded-[20px]"
+      className={`flex w-[475px] max-w-full flex-col rounded-[20px] ${
+        className ? className : ""
+      }`}
       action={action}
     >
       <h1
@@ -39,19 +42,16 @@ const Form: React.FC<FormProps> = ({
         {title}
       </h1>
       {text && (
-        <p
-          className={`${
-            !text ? "mb-[50px]" : ""
-          } mt-[9px] text-center text-sm text-gray`}
-        >
+        <p className={`mb-[50px] mt-[9px] text-center text-sm text-gray`}>
           {text}
         </p>
       )}
-      {fields.map((field, index) => (
+      {fields.map((field, idx) => (
         <FormGroup
-          key={index}
+          key={idx}
           {...field}
-          defaultValue={formData?.[field.name]}
+          defaultValue={formData?.[field.name] || ""}
+          last={fields.length - 1 === idx}
         />
       ))}
       <Button type="submit" className="mt-[30px] uppercase">

@@ -93,13 +93,11 @@ export default async function Students() {
       type: "text",
       name: "personal_number",
       label: "Personal Number",
-      last: true,
     },
     // {
     //   type: "date",
     //   name: "admission_date",
     //   label: "Date of Admission",
-    //   last: true,
     // },
   ];
 

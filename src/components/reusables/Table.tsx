@@ -3,6 +3,7 @@ import Image from "next/image";
 import { EventButtonProps } from "@/app/students/RemoveStudentButton";
 
 import { Form, Modal } from ".";
+import { Field } from "./Form";
 
 type Row = { [key: string]: string };
 
@@ -12,7 +13,7 @@ interface TableProps {
   bodyData: Row[];
   RemoveComponent?: React.ComponentType<EventButtonProps>;
   editAction?: (formData: FormData) => Promise<void>;
-  fields?: any;
+  fields?: Field[];
 }
 
 const Table: React.FC<TableProps> = ({
@@ -23,6 +24,61 @@ const Table: React.FC<TableProps> = ({
   editAction,
   fields,
 }) => {
+  const renderActionsColumn = (row: Record<string, string>) => {
+    if (fields && fields.length > 0) {
+      return (
+        <>
+          {RemoveComponent && <RemoveComponent id={row.id} />}
+          <Modal
+            OpenComponent={
+              <button type="button">
+                <Image
+                  src="/images/edit.svg"
+                  alt="edit"
+                  width={19}
+                  height={19}
+                />
+              </button>
+            }
+          >
+            <Form
+              title="update student"
+              buttonText="update"
+              fields={[{ type: "hidden", name: "id" }, ...fields]}
+              formData={row}
+              action={editAction!}
+            />
+          </Modal>
+        </>
+      );
+    }
+    return RemoveComponent ? <RemoveComponent id={row.id} /> : null;
+  };
+
+  const renderCell = (column: string, row: Record<string, string>) => {
+    if (column === "Avatar") {
+      return (
+        <Image
+          src="/images/student.png"
+          alt="student image"
+          width={65}
+          height={55}
+          className="rounded-lg"
+        />
+      );
+    }
+
+    if (column === "Actions") {
+      return (
+        <div className="flex items-center gap-[33px]">
+          {renderActionsColumn(row)}
+        </div>
+      );
+    }
+
+    return row[column] ?? row[column.toLowerCase().replace(/ /g, "_")];
+  };
+
   return (
     <table className="table w-full text-left">
       <thead className="h-[51px] text-xs font-semibold text-[#ACACAC]">
@@ -60,44 +116,7 @@ const Table: React.FC<TableProps> = ({
             >
               {headerData.map((column: string, columnIdx: number) => (
                 <td key={columnIdx} className="p-[13px]">
-                  {column === "Avatar" ? (
-                    <Image
-                      src="/images/student.png"
-                      alt="student image"
-                      width={65}
-                      height={55}
-                      className="rounded-lg"
-                    />
-                  ) : column === "Actions" ? (
-                    <div className="flex items-center gap-[33px]">
-                      {fields.length > 0 && (
-                        <Modal
-                          OpenComponent={
-                            <button type="button">
-                              <Image
-                                src="/images/edit.svg"
-                                alt="edit"
-                                width={19}
-                                height={19}
-                              />
-                            </button>
-                          }
-                        >
-                          <Form
-                            title="update student"
-                            buttonText="update"
-                            fields={[{ type: "hidden", name: "id" }, ...fields]}
-                            formData={row}
-                            action={editAction!}
-                          />
-                        </Modal>
-                      )}
-
-                      {RemoveComponent && <RemoveComponent id={row.id} />}
-                    </div>
-                  ) : (
-                    row[column] ?? row[column.toLowerCase().replace(/ /g, "_")]
-                  )}
+                  {renderCell(column, row)}
                 </td>
               ))}
             </tr>

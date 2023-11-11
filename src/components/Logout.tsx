@@ -9,6 +9,7 @@ export default function Logout() {
 
   useEffect(() => {
     if (isRediect) {
+      // TODO: Implement destroying the token in cookies
       redirect("/");
     }
   }, [isRediect]);
