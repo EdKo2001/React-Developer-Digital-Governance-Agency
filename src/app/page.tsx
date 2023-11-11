@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { revalidatePath } from "next/cache";
 
-import { Button, Form, FormGroup } from "@/components/reusables";
+import { Form } from "@/components/reusables";
 
 import { axiosInstance } from "@/config";
 
@@ -38,8 +37,6 @@ const SignIn = () => {
     { type: "email", name: "email", label: "Email" },
     { type: "password", name: "password", label: "Password" },
   ];
-
-  // mb-32 mt-48 px-[30px] pb-[58px] pt-[126px] shadow-formShadow
 
   return (
     <div className="flex h-full flex-col items-center bg-authBG px-5 shadow-authShadow">

@@ -154,6 +154,21 @@
       "teacher_id": 1,
       "start_date": "2023-01-15",
       "end_date": "2023-05-30"
+    },
+    {
+      "course_name": "new course",
+      "course_difficulty": "hard",
+      "teacher": "ed",
+      "start_date": "2023-11-12",
+      "id": 10
+    },
+    {
+      "course_name": "new course1",
+      "course_difficulty": "hard",
+      "teacher": "ed",
+      "start_date": "2023-11-19",
+      "end_date": "2023-11-26",
+      "id": 11
     }
   ],
   "users": [

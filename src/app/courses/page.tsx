@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { DashboardLayout } from "@/components";
-import { Button, Table } from "@/components/reusables";
+import { Button, Form, Modal, Table } from "@/components/reusables";
 import RemoveCourseButton from "./RemoveCourseButton";
 
 import { axiosInstance } from "@/config";
@@ -29,6 +29,30 @@ async function getCourses() {
   }
 }
 
+async function addCourse(formData: FormData) {
+  "use server";
+
+  const course_name = formData.get("course_name")?.toString();
+  const course_difficulty = formData.get("course_difficulty")?.toString();
+  const teacher = formData.get("teacher")?.toString();
+  const start_date = formData.get("start_date")?.toString();
+  const end_date = formData.get("end_date")?.toString();
+
+  try {
+    await axiosInstance.post("/courses/create", {
+      course_name,
+      course_difficulty,
+      teacher,
+      start_date,
+      end_date,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  revalidatePath("/students");
+}
+
 export default async function Courses() {
   const courses = (await getCourses()) || [];
   const headerData = [
@@ -39,6 +63,22 @@ export default async function Courses() {
     "Start Date",
     "End Date",
     "Actions",
+  ];
+
+  const fields = [
+    { type: "text", name: "course_name", label: "Course Name" },
+    { type: "text", name: "course_difficulty", label: "Course Difficulty" },
+    { type: "text", name: "teacher", label: "Teacher" },
+    {
+      type: "date",
+      name: "start_date",
+      label: "Start Date",
+    },
+    {
+      type: "date",
+      name: "end_date",
+      label: "End Date",
+    },
   ];
 
   return (
@@ -54,7 +94,16 @@ export default async function Courses() {
               height={19.25}
             />
           </button>
-          <Button>ADD NEW COURSE</Button>
+
+          <Modal OpenComponent={<Button>ADD NEW COURSE</Button>}>
+            <Form
+              title="add course"
+              text="Add more courses"
+              buttonText="add"
+              fields={fields}
+              action={addCourse}
+            />
+          </Modal>
         </div>
       </div>
       <Table

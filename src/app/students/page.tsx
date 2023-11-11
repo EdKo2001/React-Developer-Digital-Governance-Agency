@@ -94,11 +94,6 @@ export default async function Students() {
       name: "personal_number",
       label: "Personal Number",
     },
-    // {
-    //   type: "date",
-    //   name: "admission_date",
-    //   label: "Date of Admission",
-    // },
   ];
 
   return (
