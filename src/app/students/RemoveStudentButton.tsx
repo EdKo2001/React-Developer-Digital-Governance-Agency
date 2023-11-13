@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { axiosInstance } from "@/config";
 
-import { clearCachesByServerAction } from "@/app/utils";
+import { clearCachesByServerAction } from "@/utils";
 
 export interface EventButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
